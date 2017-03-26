@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mamespace命名空间，作用就是对sql进行分类haul的管理，可以理解为sql隔离 注意：使用mapper代理方法开发，namespace有特殊重要作用 -->
+<mapper namespace="cn.itcast.mybatis.mapper.OrdersMapperCustom">
+	<!-- 订单查询关联查询用户的resultmap
+	将整个查询结果映射到cn.itcast.mybatis.po.Orders中
+	-->
+	<resultMap type="cn.itcast.mybatis.po.Orders" id="OrdersUserResultMap">
+		<!-- 配置映射的订单信息 -->
+		<!-- id:指定查询列中的唯一标识,订单信息的中的唯一标识，如果有多个列组成唯一标识，配置多个id 
+		column:订单信息的唯一标识列
+		property：订单信息的唯一标识列所映射到Orders的哪个属性中
+		-->
+		<id column="id" property="id"/>
+		<!-- 配置映射关联的用户信息 -->
+		<result column="user_id" property="userId"/>
+		<result column="number" property="number"/>
+		<result column="createtime" property="createtime"/>
+		<result column="note" property="note"/>
+		<!-- 配置映射的关联的用户信息 -->
+		<!-- association:用于映射关联查询单个对象的信息
+		property：要将关联查询的用户信息映射到Orders的哪个属性中
+		 -->
+		<association property="user" javaType="cn.itcast.mybatis.po.User">
+			<!-- id:关联查询用户的唯一标识 
+			column:指定唯一标识用户信息的列
+			javaType:映射到user的哪个属性
+			-->
+			<id column="user_id" property="id"/>
+			<result column="username" property="username"/>
+			<result column="sex" property="sex"/>
+			<result column="address" property="address"/>
+		</association>
+	</resultMap>
+
+
+	<!-- 查询订单关联查询用户 -->
+	<select id="findOrdersUser" resultType="cn.itcast.mybatis.po.OrdersCustom">
+		SELECT
+		orders.*,
+		user.username,
+		user.sex,
+		user.address
+		FROM orders,USER
+		WHERE
+		orders.user_id=user.id
+	</select>
+
+	<!-- 查询订单关联查询用户信息，使用resultmap -->
+	<select id="findOrdersUserResultMap" resultMap="OrdersUserResultMap">
+		SELECT
+		orders.*,
+		user.username,
+		user.sex,
+		user.address
+		FROM orders,USER
+		WHERE
+		orders.user_id=user.id
+	</select>
+</mapper>
