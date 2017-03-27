@@ -55,8 +55,10 @@ public class Orderdetail {
 
 	@Override
 	public String toString() {
-		return "Orderdetail [id=" + id + ", ordersId=" + ordersId
-				+ ", itemsId=" + itemsId + ", itemsNum=" + itemsNum + "]";
+		return "Orderdetail [id=" + id + ", ordersId=" + ordersId + ", itemsId=" + itemsId + ", itemsNum=" + itemsNum
+				+ ", items=" + items + "]";
 	}
+
+	
     
 }
