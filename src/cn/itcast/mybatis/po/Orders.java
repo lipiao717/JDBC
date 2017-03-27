@@ -16,6 +16,8 @@ public class Orders {
 	// 用户信息
 	private User user;
 	
+	//订单明细
+	private List<Orderdetail> orderdetails;
 
 	public User getUser() {
 		return user;
@@ -64,5 +66,14 @@ public class Orders {
 	public void setNote(String note) {
 		this.note = note == null ? null : note.trim();
 	}
+
+	public List<Orderdetail> getOrderdetails() {
+		return orderdetails;
+	}
+
+	public void setOrderdetails(List<Orderdetail> orderdetails) {
+		this.orderdetails = orderdetails;
+	}
+	
 
 }

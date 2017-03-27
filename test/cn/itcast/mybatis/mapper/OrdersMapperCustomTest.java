@@ -46,5 +46,15 @@ public class OrdersMapperCustomTest {
 		sqlSession.close();
 		System.out.println(orderCustomList);
 	}
+	
+	@Test
+	public void testFindOrdersAndOrderDetailResultMap() throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		//创建代理对象,mybatis自动生成mapper对象
+		OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		List<Orders> orderCustomList = ordersMapperCustom.findOrdersAndOrderDetailResultMap();
+		sqlSession.close();
+		System.out.println(orderCustomList);
+	}
 
 }
