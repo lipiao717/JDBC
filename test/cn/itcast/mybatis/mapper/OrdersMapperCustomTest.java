@@ -121,11 +121,11 @@ public class OrdersMapperCustomTest {
 		sqlSession1.close();
 		
 		//使用sqlSession3执行commit操作
-		UserMapper userMapper3 = sqlSession3.getMapper(UserMapper.class);
-		user1.setUsername("测试用户1");
-		userMapper3.updateUser(user1);
-		sqlSession3.commit();
-		sqlSession3.close();
+//		UserMapper userMapper3 = sqlSession3.getMapper(UserMapper.class);
+//		user1.setUsername("测试用户1");
+//		userMapper3.updateUser(user1);
+//		sqlSession3.commit();
+//		sqlSession3.close();
 		
 
 		UserMapper userMapper2 = sqlSession2.getMapper(UserMapper.class);
